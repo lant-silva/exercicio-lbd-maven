@@ -50,9 +50,6 @@ WHERE imc > @imc
 ORDER BY imc ASC
 END
 
-
-
-
 CREATE PROCEDURE sp_alunoatividade(@peso DECIMAL(4,1), @altura DECIMAL(4,2), @nome VARCHAR(200), @codigo INT, @saida BIT OUTPUT)
 AS
 DECLARE @atv INT,
@@ -80,11 +77,4 @@ BEGIN
 	SET imc = @imc, peso = @peso, atividade = @atv, altura = @altura
 	WHERE codigo_aluno = @codigo 
 END
---Insert em aluno_atividades
-
-DECLARE @saida INT
-EXEC sp_alunoatividade 80.5, 1.5, 'Joao', 1, @saida
-
-
-SELECT * FROM aluno_atividades aa, aluno a, atividade v WHERE a.codigo = aa.codigo_aluno AND v.codigo = aa.atividade
 
